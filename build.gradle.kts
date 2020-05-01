@@ -64,6 +64,9 @@ dependencies {
 
     runtimeOnly("org.hsqldb:hsqldb")
     runtimeOnly("mysql:mysql-connector-java")
+
+    // todo development only
+    implementation("org.springframework.boot:spring-boot-devtools")
 }
 
 // TODO is this needed or relevant? maybe it will break something?
