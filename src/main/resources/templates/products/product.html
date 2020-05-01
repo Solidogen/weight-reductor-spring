@@ -3,5 +3,13 @@
       xmlns:th="http://www.thymeleaf.org">
     <body>
         <h1>Product</h1>
+        <div>Name:</div>
+        <div th:text="${product.name}">?</div>
+        <div>Protein: </div>
+        <div th:text="${product.protein}">?</div>
+        <div>Carbs: </div>
+        <div th:text="${product.carbs}">?</div>
+        <div>Fat: </div>
+        <div th:text="${product.fat}">?</div>
     </body>
 </html>

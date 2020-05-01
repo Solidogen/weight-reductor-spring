@@ -3,5 +3,26 @@
       xmlns:th="http://www.thymeleaf.org">
     <body>
         <h1>All Products</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Protein</th>
+                    <th>Carbs</th>
+                    <th>Fat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${products.empty}">
+                    <td colspan="2"> No Products Available </td>
+                </tr>
+                <tr th:each="product : ${products}">
+                    <td><span th:text="${product.name}">?</span></td>
+                    <td><span th:text="${product.protein}">?</span></td>
+                    <td><span th:text="${product.carbs}">?</span></td>
+                    <td><span th:text="${product.fat}">?</span></td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>
