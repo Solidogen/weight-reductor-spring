@@ -6,7 +6,6 @@ import com.spyrdonapps.weightreductor.util.extensions.rejectIfMoreThan
 import com.spyrdonapps.weightreductor.util.extensions.rejectIfNull
 import com.spyrdonapps.weightreductor.util.extensions.rejectIfNullOrBlank
 import org.springframework.validation.Errors
-import kotlin.system.measureTimeMillis
 
 class ProductValidator : BaseValidator<Product>() {
 
@@ -14,19 +13,16 @@ class ProductValidator : BaseValidator<Product>() {
 
     override fun validate(errorList: Errors, target: Product) {
         with(target) {
-            val time = measureTimeMillis {
-                errorList.rejectIfNullOrBlank(::name)
-                errorList.rejectIfNull(::protein)
-                errorList.rejectIfNull(::carbs)
-                errorList.rejectIfNull(::fat)
-                errorList.rejectIfLessThan(::protein, 0)
-                errorList.rejectIfLessThan(::carbs, 0)
-                errorList.rejectIfLessThan(::fat, 0)
-                errorList.rejectIfMoreThan(::protein, 100)
-                errorList.rejectIfMoreThan(::carbs, 100)
-                errorList.rejectIfMoreThan(::fat, 100)
-            }
-            Unit
+            errorList.rejectIfNullOrBlank(name, "name")
+            errorList.rejectIfNull(protein, "protein")
+            errorList.rejectIfNull(carbs, "carbs")
+            errorList.rejectIfNull(fat, "fat")
+            errorList.rejectIfLessThan(protein, "protein", 0)
+            errorList.rejectIfLessThan(carbs, "carbs", 0)
+            errorList.rejectIfLessThan(fat, "fat", 0)
+            errorList.rejectIfMoreThan(protein, "protein", 100)
+            errorList.rejectIfMoreThan(carbs, "carbs", 100)
+            errorList.rejectIfMoreThan(fat, "fat", 100)
         }
     }
 }
