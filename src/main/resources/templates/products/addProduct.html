@@ -1,22 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'addProduct')}">
     <body>
         <h1>Add Product</h1>
 
         <form th:object="${product}" class="form-horizontal" method="post">
             <div>
-                <label for="name">Name</label>
-                <input type="text" id="name" th:field="*{name}">
-                <br>
-                <label for="protein">Protein</label>
-                <input type="text" id="protein" th:field="*{protein}">
-                <br>
-                <label for="carbs">Carbs</label>
-                <input type="text" id="carbs" th:field="*{carbs}">
-                <br>
-                <label for="fat">Fat</label>
-                <input type="text" id="fat" th:field="*{fat}">
+                <input th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}"/>
+                <input th:replace="~{fragments/inputField :: input ('Protein', 'protein', 'text')}"/>
+                <input th:replace="~{fragments/inputField :: input ('Carbs', 'carbs', 'text')}"/>
+                <input th:replace="~{fragments/inputField :: input ('Fat', 'fat', 'text')}"/>
             </div>
             <div>
                 <button class="btn btn-default" type="submit">Add Product</button>
@@ -24,3 +16,4 @@
         </form>
     </body>
 </html>
+<!--th:href="@{/resources/css/product.css}"-->

@@ -6,6 +6,7 @@ import com.spyrdonapps.weightreductor.model.validator.ProductValidator
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
+import org.springframework.ui.set
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.WebDataBinder
 import org.springframework.web.bind.annotation.GetMapping
@@ -24,7 +25,7 @@ class ProductController(private val productRepository: ProductRepository) {
     }
 
     @InitBinder("product")
-    fun initPetBinder(dataBinder: WebDataBinder) {
+    fun initProductBinder(dataBinder: WebDataBinder) {
         dataBinder.validator = ProductValidator()
     }
 
@@ -49,9 +50,10 @@ class ProductController(private val productRepository: ProductRepository) {
     }
 
     @PostMapping("/products/add")
-    fun addProduct(@Valid product: Product, result: BindingResult): String {
+    fun addProduct(@Valid product: Product, result: BindingResult, model: Model): String {
         return if (result.hasErrors()) {
-            error("Errors in validation:\n${result.allErrors.joinToString(separator = "\n") { it.toString() }}")
+            model["product"] = Product()
+            return "products/addProduct"
         } else {
             productRepository.save(product)
             "redirect:/products/" + product.id

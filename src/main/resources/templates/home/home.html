@@ -1,20 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <script type="text/javascript" th:src="@{/resources/js/utils.js}"></script>
-    </head>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
     <body>
+        <div class="col-md-3"><img class="img-responsive" src=""
+                                   style="max-height: 84px; width: 84px;"
+                                   th:src="@{/resources/images/github-cyan.svg}"/></div>
         <h1>Weight Reductor</h1>
-        <h2>Navigation</h2>
-        <br>
-        <nav>
-            <a href="products">All Products</a> |
-            <a href="products/add">Add a Product</a> |
-            <a href="crash">Crash</a> |
-        </nav>
-        <br>
-        <input type="button" onclick="showAlert();" value="Alert" />
-        <input type="button" onclick="showAlertWithParam(getSomeString());" value="Alert param" />
+        <h3>Home page</h3>
     </body>
 </html>
