@@ -7,5 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping
 class HomeController {
 
     @GetMapping("/")
-    fun welcome(): String = "home/home"
+    fun showWelcome(): String = "home/home"
+
+    @GetMapping("/design")
+    fun showNewDesign(): String = "design/design"
 }
