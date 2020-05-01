@@ -2,11 +2,14 @@ package com.spyrdonapps.weightreductor.controller
 
 import com.spyrdonapps.weightreductor.model.entity.Product
 import com.spyrdonapps.weightreductor.model.repository.ProductRepository
+import com.spyrdonapps.weightreductor.model.validator.ProductValidator
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
+import org.springframework.web.bind.WebDataBinder
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.InitBinder
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.ResponseBody
@@ -15,6 +18,15 @@ import javax.validation.Valid
 @Controller
 class ProductController(private val productRepository: ProductRepository) {
 
+    @InitBinder
+    fun setAllowedFields(dataBinder: WebDataBinder) {
+        dataBinder.setDisallowedFields("id")
+    }
+
+    @InitBinder("product")
+    fun initPetBinder(dataBinder: WebDataBinder) {
+        dataBinder.validator = ProductValidator()
+    }
 
     @GetMapping("/products")
     fun showAllProducts(model: MutableMap<String, Any>): String {
