@@ -11,17 +11,14 @@ import javax.validation.constraints.NotEmpty
 class Product : NamedEntity() {
     
     @Column(name = "protein")
-    @NotEmpty
     @Digits(fraction = 1, integer = 3)
     var protein = 0f
 
     @Column(name = "carbs")
-    @NotEmpty
     @Digits(fraction = 1, integer = 3)
     var carbs = 0f
 
     @Column(name = "fat")
-    @NotEmpty
     @Digits(fraction = 1, integer = 3)
     var fat = 0f
 }

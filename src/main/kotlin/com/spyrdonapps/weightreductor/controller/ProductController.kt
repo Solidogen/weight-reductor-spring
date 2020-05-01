@@ -21,7 +21,7 @@ class ProductController(private val productRepository: ProductRepository) {
     }
 
     @GetMapping("/products/{id}")
-    fun showProduct(@PathVariable("id") productId: Int, model: Model): String {
+    fun showProductById(@PathVariable("id") productId: Int, model: Model): String {
         val product = productRepository.findProductById(productId)
         model.addAttribute(product)
         return "products/product"
@@ -30,7 +30,7 @@ class ProductController(private val productRepository: ProductRepository) {
     @PostMapping("/products/add")
     fun addProduct(@Valid product: Product, result: BindingResult): String {
         return if (result.hasErrors()) {
-            error("Errors in validation, todo fix this")
+            error("Errors in validation: ${result.allErrors}")
         } else {
             productRepository.save(product)
             "redirect:/products/" + product.id
