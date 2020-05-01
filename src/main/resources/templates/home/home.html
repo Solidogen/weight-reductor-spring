@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <script type="text/javascript" th:src="@{/resources/js/utils.js}"></script>
+    </head>
     <body>
         <h1>Weight Reductor</h1>
+        <h2>Navigation</h2>
         <br>
-        <input type="button" onclick="location.href='products';" value="Products" />
-        <input type="button" onclick="location.href='crash';" value="Crash" />
+        <nav>
+            <a href="products">All Products</a> |
+            <a href="products/add">Add a Product</a> |
+            <a href="crash">Crash</a> |
+        </nav>
+        <br>
+        <input type="button" onclick="showAlert();" value="Alert" />
+        <input type="button" onclick="showAlertWithParam(getSomeString());" value="Alert param" />
     </body>
 </html>

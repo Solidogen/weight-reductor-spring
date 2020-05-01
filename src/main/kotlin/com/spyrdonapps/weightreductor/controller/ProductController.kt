@@ -30,6 +30,11 @@ class ProductController(private val productRepository: ProductRepository) {
         return "products/product"
     }
 
+    @GetMapping("/products/add")
+    fun showAddProductForm(): String {
+        return "products/addProduct"
+    }
+
     @PostMapping("/products/add")
     fun addProduct(@Valid product: Product, result: BindingResult): String {
         return if (result.hasErrors()) {
