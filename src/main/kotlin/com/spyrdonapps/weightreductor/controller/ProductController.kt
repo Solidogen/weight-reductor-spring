@@ -44,15 +44,14 @@ class ProductController(private val productRepository: ProductRepository) {
     }
 
     @GetMapping("/products/add")
-    fun showAddProductForm(model: MutableMap<String, Any>): String {
+    fun initAddProductForm(model: MutableMap<String, Any>): String {
         model["product"] = Product()
         return "products/addProduct"
     }
 
     @PostMapping("/products/add")
-    fun addProduct(@Valid product: Product, result: BindingResult, model: Model): String {
+    fun processAddProductForm(@Valid product: Product, result: BindingResult): String {
         return if (result.hasErrors()) {
-            model["product"] = Product()
             return "products/addProduct"
         } else {
             productRepository.save(product)

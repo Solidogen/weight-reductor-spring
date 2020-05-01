@@ -14,10 +14,14 @@ fun Errors.rejectIfNullOrBlank(
 }
 
 fun Errors.rejectIfNull(
-    value: Float?,
+    value: Any?,
     propertyName: String,
     message: String = "${propertyName.capitalize()} value is required"
 ) {
+    if (fieldErrors.find { it.field == propertyName }?.isBindingFailure == true) {
+        // skip if already a type mismatch
+        return
+    }
     if (value == null) {
         rejectValue(propertyName, required, message)
     }
