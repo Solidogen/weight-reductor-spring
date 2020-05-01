@@ -3,5 +3,24 @@
       xmlns:th="http://www.thymeleaf.org">
     <body>
         <h1>Add Product</h1>
+
+        <form th:object="${product}" class="form-horizontal" method="post">
+            <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" th:field="*{name}">
+                <br>
+                <label for="protein">Protein</label>
+                <input type="text" id="protein" th:field="*{protein}">
+                <br>
+                <label for="carbs">Carbs</label>
+                <input type="text" id="carbs" th:field="*{carbs}">
+                <br>
+                <label for="fat">Fat</label>
+                <input type="text" id="fat" th:field="*{fat}">
+            </div>
+            <div>
+                <button class="btn btn-default" type="submit">Add Product</button>
+            </div>
+        </form>
     </body>
 </html>

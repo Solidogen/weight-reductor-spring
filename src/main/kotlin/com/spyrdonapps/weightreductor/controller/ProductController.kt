@@ -31,14 +31,15 @@ class ProductController(private val productRepository: ProductRepository) {
     }
 
     @GetMapping("/products/add")
-    fun showAddProductForm(): String {
+    fun showAddProductForm(model: MutableMap<String, Any>): String {
+        model["product"] = Product()
         return "products/addProduct"
     }
 
     @PostMapping("/products/add")
     fun addProduct(@Valid product: Product, result: BindingResult): String {
         return if (result.hasErrors()) {
-            error("Errors in validation: ${result.allErrors}")
+            error("Errors in validation:\n${result.allErrors.joinToString(separator = "\n") { it.toString() }}")
         } else {
             productRepository.save(product)
             "redirect:/products/" + product.id
