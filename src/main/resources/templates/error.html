@@ -1,19 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <style>
-            table td{
-                vertical-align:top;
-                border:solid 1px #888;
-                padding:10px;
-            }
-
-        </style>
-    </head>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'crash')}">
     <body>
         <h1>Error Page</h1>
-        <table>
+        <table class="table table-striped">
             <tr>
                 <td>Date</td>
                 <td th:text="${timestamp}"/>
