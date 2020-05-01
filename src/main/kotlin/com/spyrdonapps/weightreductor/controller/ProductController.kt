@@ -37,5 +37,3 @@ class ProductController(private val productRepository: ProductRepository) {
         }
     }
 }
-
-
