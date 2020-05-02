@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping
 class HomeController {
 
     @GetMapping("/")
-    fun showWelcome(): String = "home/home"
+    fun showHome(): String =  "redirect:/design" //"home/home"
 
     @GetMapping("/design")
-    fun showNewDesign(): String = "design/design"
+    fun showNewDesignHome(): String = "home/designhome"
 }
