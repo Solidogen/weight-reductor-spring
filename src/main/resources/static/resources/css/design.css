@@ -80,6 +80,15 @@ body {
     text-decoration: none;
 }
 
+/* HOVERED */
+.sidebar-item:hover {
+    background:
+            linear-gradient(95.57deg, #3da1ef 0%, #3da1ef 100%),
+            linear-gradient(0deg, #FFFFFF, #FFFFFF),
+            linear-gradient(180deg, #323B41 0%, #1F262A 100%);
+}
+
+/* SELECTED */
 .sidebar-item-active {
     background:
             linear-gradient(95.57deg, #1250EF 0%, #1250EF 100%),
