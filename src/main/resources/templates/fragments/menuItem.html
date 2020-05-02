@@ -1,13 +1,13 @@
 <html>
     <body>
-        <li th:fragment="menuItem (path,active,title,glyph,text)" class="active"
-            th:class="${active==menu ? 'active' : ''}">
-            <a th:href="@{__${path}__}" th:title="${title}">
+        <div th:fragment="menuItem (path,active,title,glyph,text)" class="sidebar-item-active"
+            th:class="${active==menu ? 'sidebar-item-active' : ''}">
+            <a th:href="@{__${path}__}" th:title="${title}" class="sidebar-text sidebar-item">
                         <span th:class="'glyphicon  glyphicon-'+${glyph}" class="glyphicon glyphicon-home"
                               aria-hidden="true"></span>
                 <span th:text="${text}">Template</span>
             </a>
-        </li>
+        </div>
     </body>
 </html>
 
@@ -15,31 +15,40 @@
 <!--
 Do something similar with my menuItem to check current item
 
+<div class="sidebar-item-active" th:class="${'home'==active-menu-item ? 'sidebar-item-active' : ''}">
+    <a th:href="@{/}" class="sidebar-text sidebar-item">
+    <span th:class="'glyphicon glyphicon-home'"
+          class="glyphicon glyphicon-home"
+          aria-hidden="true"></span>
+        Home
+    </a>
+</div>
+
 USAGE:
 
 
-                        <li th:replace="~{fragments/menuItem ::menuItem ('/','home','home page','home','Home')}">
-                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                            <span>Home</span>
-                        </li>
+    <li th:replace="~{fragments/menuItem ::menuItem ('/','home','home page','home','Home')}">
+        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        <span>Home</span>
+    </li>
 
-                        <li th:replace="~{fragments/menuItem ::menuItem ('/products','products','All products','search','All products')}">
-                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                            <span>All products</span>
-                        </li>
+    <li th:replace="~{fragments/menuItem ::menuItem ('/products','products','All products','search','All products')}">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        <span>All products</span>
+    </li>
 
-                        <li th:replace="~{fragments/menuItem ::menuItem ('/products/add','addProduct','Add a product','plus','Add a product')}">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                            <span>Add a product</span>
-                        </li>
+    <li th:replace="~{fragments/menuItem ::menuItem ('/products/add','addProduct','Add a product','plus','Add a product')}">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        <span>Add a product</span>
+    </li>
 
-                        <li th:replace="~{fragments/menuItem ::menuItem ('/crash','crash','trigger a RuntimeException to see how it is handled','warning-sign','Error')}">
-                            <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-                            <span>Error</span>
-                        </li>
+    <li th:replace="~{fragments/menuItem ::menuItem ('/crash','crash','trigger a RuntimeException to see how it is handled','warning-sign','Error')}">
+        <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+        <span>Error</span>
+    </li>
 
-                        <li th:replace="~{fragments/menuItem ::menuItem ('/design','design','New design','education','New design')}">
-                            <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
-                            <span>Error</span>
-                        </li>
+    <li th:replace="~{fragments/menuItem ::menuItem ('/design','design','New design','education','New design')}">
+        <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+        <span>Error</span>
+    </li>
 -->

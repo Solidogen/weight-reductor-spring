@@ -74,11 +74,25 @@ body {
 }
 
 .sidebar-item {
-    background: #4CAF50;
     padding-top: 30px;
     padding-left: 4px;
     padding-bottom: 30px;
     text-decoration: none;
+}
+
+.sidebar-item-active {
+    background:
+            linear-gradient(95.57deg, #1250EF 0%, #1250EF 100%),
+            linear-gradient(0deg, #FFFFFF, #FFFFFF),
+            linear-gradient(180deg, #323B41 0%, #1F262A 100%);
+}
+
+/*
+    MARGINS, PADDINGS
+*/
+
+.margin-right-4 {
+    margin-right: 4px;
 }
 
 /*

@@ -1,5 +1,5 @@
 <!doctype html>
-<html th:fragment="rootLayout (template, active-menu-item)">
+<html th:fragment="rootLayout (template, activeMenuItem)">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta charset="utf-8"/>
@@ -32,27 +32,35 @@
                 <div id="sidebar-container">
                     <div class="sidebar-text sidebar-title">Weight Reductor</div>
                     <div class="sidebar-item-container">
-                        <a th:href="@{/}" class="sidebar-text sidebar-item">
+                            <a th:href="@{/}" class="sidebar-text sidebar-item"
+                               th:classappend="${'home'==activeMenuItem ? 'sidebar-item-active' : ''}">
                             <span th:class="'glyphicon glyphicon-home'"
                                   class="glyphicon glyphicon-home"
+                                  th:classappend="margin-right-4"
                                   aria-hidden="true"></span>
-                            Home
-                        </a>
-                        <a th:href="@{/products}" class="sidebar-text sidebar-item">
+                                Home
+                            </a>
+                        <a th:href="@{/products}" class="sidebar-text sidebar-item"
+                           th:classappend="${'allProducts'==activeMenuItem ? 'sidebar-item-active' : ''}">
                             <span th:class="'glyphicon glyphicon-search'"
                                   class="glyphicon glyphicon-search"
+                                  th:classappend="margin-right-4"
                                   aria-hidden="true"></span>
                             All Products
                         </a>
-                        <a th:href="@{/products/add}" class="sidebar-text sidebar-item">
+                        <a th:href="@{/products/add}" class="sidebar-text sidebar-item"
+                           th:classappend="${'addProduct'==activeMenuItem ? 'sidebar-item-active' : ''}">
                             <span th:class="'glyphicon glyphicon-plus'"
                                   class="glyphicon glyphicon-plus"
+                                  th:classappend="margin-right-4"
                                   aria-hidden="true"></span>
                             Add a Product
                         </a>
-                        <a th:href="@{/crash}" class="sidebar-text sidebar-item">
+                        <a th:href="@{/crash}" class="sidebar-text sidebar-item"
+                           th:classappend="${'crash'==activeMenuItem ? 'sidebar-item-active' : ''}">
                             <span th:class="'glyphicon glyphicon-warning-sign'"
                                   class="glyphicon glyphicon-warning-sign"
+                                  th:classappend="margin-right-4"
                                   aria-hidden="true"></span>
                             Crash
                         </a>

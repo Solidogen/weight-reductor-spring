@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/rootLayout :: rootLayout (~{::body},'addProduct')}">
     <body>
-        <h2>Add Product</h2>
+        <h2>Add a Product</h2>
         <form th:object="${product}" class="form-horizontal" method="post">
             <div class="form-group has-feedback">
                 <input th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}"/>
