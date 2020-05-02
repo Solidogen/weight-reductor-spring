@@ -29,18 +29,17 @@
 
         <div id="page">
             <div id="sideBar">
-                <div class="sidebar-text">
-                    box 1
-                </div>
-                <div class="sidebar-text">
-                    box 2
-                </div>
+                <div class="sidebar-text sidebar-title">Weight Reductor</div>
+                <a th:href="@{/}" class="sidebar-text">Home</a>
+                <a th:href="@{/products}" class="sidebar-text">All Products</a>
+                <a th:href="@{/products/add}" class="sidebar-text">Add a Product</a>
+                <a th:href="@{/crash}" class="sidebar-text">Crash</a>
             </div>
             <div id="content">
-                content
+                <th:block th:include="${template}"/>
             </div>
         </div>
-        
+
 
 <!--            <div id="nav-column" class="column">-->
 <!--                <div class="nav-header"></div>-->

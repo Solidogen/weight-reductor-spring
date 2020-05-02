@@ -28,8 +28,10 @@ body {
 
 #sideBar {
     width: min-content;
-    background: red;
+    /*background: red;*/
     padding: 30px;
+        background: linear-gradient(95.57deg, #000000 0%, #1250EF 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(180deg, #323B41 0%, #1F262A 100%);
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.04);
 }
 
 #content {
@@ -39,13 +41,18 @@ body {
 }
 .sidebar-text {
     white-space: nowrap;
+    color: white;
 }
 
+.sidebar-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
 
-
-
-
-
+.design-home {
+    background: white;
+}
 
 /*html {*/
 /*    height: 100%;*/
