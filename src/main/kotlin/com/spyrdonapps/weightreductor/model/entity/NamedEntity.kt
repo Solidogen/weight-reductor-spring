@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank
 open class NamedEntity : BaseEntity() {
 
     @Column(name = "name")
-//    @NotBlank // TODO re-add this after I deal with null floats
+    @NotBlank
     var name: String? = null
 
     override fun toString(): String = name ?: ""

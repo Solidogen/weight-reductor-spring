@@ -5,3 +5,7 @@ ALTER DATABASE weightreductor
   DEFAULT COLLATE utf8_general_ci;
 
 GRANT ALL PRIVILEGES ON weightreductor.* TO 'weightreductor@%' IDENTIFIED BY 'weightreductor';
+
+#####
+##### Run only in case when NOT using docker container
+#####
