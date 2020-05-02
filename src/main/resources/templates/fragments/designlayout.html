@@ -21,30 +21,49 @@
     </head>
 
     <body>
-        <body>
-            <div id="nav-column" class="column">
-                <div class="nav-header"></div>
-                <div class="column-content">
-                    <div class="navigation">
+        <div id="header">
+            <div id="headerContent">
+                Desktop
+            </div>
+        </div>
 
-                        <p class="navigation-text navigation-title">Weight Reductor</p>
-
-                        <a th:href="@{/}" class="navigation-item navigation-text">Home</a>
-                        <a th:href="@{/products}" class="navigation-item navigation-text">All Products</a>
-                        <a th:href="@{/products/add}" class="navigation-item navigation-text">Add a Product</a>
-                        <a th:href="@{/crash}" class="navigation-item navigation-text">Crash</a>
-                    </div>
+        <div id="page">
+            <div id="sideBar">
+                <div class="sidebar-text">
+                    box 1
+                </div>
+                <div class="sidebar-text">
+                    box 2
                 </div>
             </div>
-            <div id="page-column" class="column">
-                <div class="page-header"></div>
-                <div class="column-content column-content-scrollable">
-                    <div class="page-container">
-                        <th:block th:include="${template}"/>
-                    </div>
-                </div>
+            <div id="content">
+                content
             </div>
-        </body>
+        </div>
+        
+
+<!--            <div id="nav-column" class="column">-->
+<!--                <div class="nav-header"></div>-->
+<!--                <div>-->
+<!--                    <div class="navigation">-->
+
+<!--                        <p class="navigation-text navigation-title">Weight Reductor</p>-->
+
+<!--                        <a th:href="@{/}" class="navigation-item navigation-text">Home</a>-->
+<!--                        <a th:href="@{/products}" class="navigation-item navigation-text">All Products</a>-->
+<!--                        <a th:href="@{/products/add}" class="navigation-item navigation-text">Add a Product</a>-->
+<!--                        <a th:href="@{/crash}" class="navigation-item navigation-text">Crash</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div id="page-column" class="column">-->
+<!--                <div class="page-header"></div>-->
+<!--                <div class="column-content column-content-scrollable">-->
+<!--                    <div class="page-container">-->
+<!--                        <th:block th:include="${template}"/>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
         <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
         <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>

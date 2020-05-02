@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'addProduct')}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/designlayout :: designlayout (~{::body},'addProduct')}">
     <body>
         <h2>Add Product</h2>
         <form th:object="${product}" class="form-horizontal" method="post">
