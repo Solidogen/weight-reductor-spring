@@ -5,7 +5,8 @@ html {
 body {
     height: 100%;
     margin: 0;
-    background: linear-gradient(#b3ffab, #67fffc);
+    overflow: hidden;
+    background: #e5e5e5;
 }
 
 #header {
@@ -22,23 +23,23 @@ body {
 
 #page {
     display: flex;
-    height: calc( 100vh - 30px);
+    height: calc(100vh - 30px);
     /* calculate the height. Header is 30px */
 }
 
 #sideBar {
     width: min-content;
-    /*background: red;*/
     padding: 30px;
-        background: linear-gradient(95.57deg, #000000 0%, #1250EF 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(180deg, #323B41 0%, #1F262A 100%);
-        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.04);
+    background: linear-gradient(95.57deg, #000000 0%, #1250EF 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(180deg, #323B41 0%, #1F262A 100%);
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.04);
 }
 
 #content {
-    background: blue;
     flex: 1 0 auto;
+    overflow-y: auto;
     /* enable grow, disable shrink */
 }
+
 .sidebar-text {
     white-space: nowrap;
     color: white;
@@ -49,89 +50,6 @@ body {
     text-transform: uppercase;
     margin-bottom: 30px;
 }
-
-.design-home {
-    background: white;
-}
-
-/*html {*/
-/*    height: 100%;*/
-/*}*/
-
-/*body {*/
-/*    background-color: #E5E5E5;*/
-/*    height: 100%;*/
-/*    overflow: hidden; !*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*!*/
-/*    margin: 0; !*removes default style*!*/
-/*    display: flex; !*enables flex content for its children*!*/
-/*    box-sizing: border-box;*/
-/*}*/
-
-/*.column {*/
-/*    height: 100%; !*allows both columns to span the full height of the browser window*!*/
-/*    display: flex;*/
-/*    flex-direction: column; !*places the left and right headers above the bottom content*!*/
-/*}*/
-
-/*#nav-column {*/
-/*    flex-shrink: 0; !*makes sure that content is not cut off in a smaller browser window*!*/
-/*}*/
-
-/*.nav-header {*/
-/*    flex-shrink: 0;*/
-/*}*/
-
-/*.page-header {*/
-/*    flex-shrink: 0;*/
-/*    display: inline-flex;*/
-/*}*/
-
-/*ul {*/
-/*    display: inline-flex;*/
-/*    list-style: none;*/
-/*}*/
-
-/*.column-content {*/
-/*    flex-grow: 1; !*ensures that the container will take up the full height of the parent container*!*/
-/*}*/
-
-/*.column-content-scrollable {*/
-/*    overflow-y: auto; !*adds scroll to this container*!*/
-/*}*/
-
-/*.page-container {*/
-/*    border-style: dashed;*/
-/*    flex-grow: 1;*/
-/*}*/
-
-/*.navigation {*/
-/*    height: 100%;*/
-/*    left: 0;*/
-/*    top: 0;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-
-/*    flex-basis: auto;*/
-/*    padding: 30px;*/
-
-/*    background: linear-gradient(95.57deg, #000000 0%, #1250EF 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(180deg, #323B41 0%, #1F262A 100%);*/
-/*    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.04);*/
-/*}*/
-
-/*.navigation-item {*/
-
-/*}*/
-
-/*.navigation-text {*/
-/*    color: white;*/
-/*}*/
-
-/*.navigation-title {*/
-/*    font-weight: bold;*/
-/*    text-transform: uppercase;*/
-/*    white-space: nowrap;*/
-/*    margin-bottom: 30px;*/
-/*}*/
 
 
 @font-face {
