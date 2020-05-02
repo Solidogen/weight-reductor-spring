@@ -1,5 +1,5 @@
 <!doctype html>
-<html th:fragment="rootLayout (template, menu)">
+<html th:fragment="rootLayout (template, active-menu-item)">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta charset="utf-8"/>
@@ -17,26 +17,46 @@
 
         <script type="text/javascript" th:src="@{/resources/js/utils.js}"></script>
         <link rel="stylesheet" th:href="@{/resources/css/design.css}"/>
-
-
     </head>
 
     <body>
-        <div class="container">
+        <div id="root-container">
 
             <div id="header-container">
                 <div id="header-content">
-                    Desktop
+                    best
                 </div>
             </div>
 
             <div id="sidebar-and-content-container">
                 <div id="sidebar-container">
                     <div class="sidebar-text sidebar-title">Weight Reductor</div>
-                    <a th:href="@{/}" class="sidebar-text">Home</a>
-                    <a th:href="@{/products}" class="sidebar-text">All Products</a>
-                    <a th:href="@{/products/add}" class="sidebar-text">Add a Product</a>
-                    <a th:href="@{/crash}" class="sidebar-text">Crash</a>
+                    <div class="sidebar-item-container">
+                        <a th:href="@{/}" class="sidebar-text sidebar-item">
+                            <span th:class="'glyphicon glyphicon-home'"
+                                  class="glyphicon glyphicon-home"
+                                  aria-hidden="true"></span>
+                            Home
+                        </a>
+                        <a th:href="@{/products}" class="sidebar-text sidebar-item">
+                            <span th:class="'glyphicon glyphicon-search'"
+                                  class="glyphicon glyphicon-search"
+                                  aria-hidden="true"></span>
+                            All Products
+                        </a>
+                        <a th:href="@{/products/add}" class="sidebar-text sidebar-item">
+                            <span th:class="'glyphicon glyphicon-plus'"
+                                  class="glyphicon glyphicon-plus"
+                                  aria-hidden="true"></span>
+                            Add a Product
+                        </a>
+                        <a th:href="@{/crash}" class="sidebar-text sidebar-item">
+                            <span th:class="'glyphicon glyphicon-warning-sign'"
+                                  class="glyphicon glyphicon-warning-sign"
+                                  aria-hidden="true"></span>
+                            Crash
+                        </a>
+                    </div>
                 </div>
                 <div id="content-container">
                     <th:block th:include="${template}"/>
