@@ -53,7 +53,6 @@ dependencies {
     implementation("org.webjars:webjars-locator-core")
     implementation("org.webjars:jquery:$jQueryVersion")
     implementation("org.webjars:jquery-ui:$jQueryUIVersion")
-    implementation("org.webjars:bootstrap:$boostrapVersion")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(module = "junit")

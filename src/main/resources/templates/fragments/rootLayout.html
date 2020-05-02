@@ -15,34 +15,36 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <link rel="stylesheet" th:href="@{/resources/css/design.css}"/>
         <script type="text/javascript" th:src="@{/resources/js/utils.js}"></script>
+        <link rel="stylesheet" th:href="@{/resources/css/design.css}"/>
+
 
     </head>
 
     <body>
-        <div id="header">
-            <div id="headerContent">
-                Desktop
+        <div class="container">
+            <div id="header">
+                <div id="headerContent">
+                    Desktop
+                </div>
             </div>
-        </div>
 
-        <div id="page">
-            <div id="sideBar">
-                <div class="sidebar-text sidebar-title">Weight Reductor</div>
-                <a th:href="@{/}" class="sidebar-text">Home</a>
-                <a th:href="@{/products}" class="sidebar-text">All Products</a>
-                <a th:href="@{/products/add}" class="sidebar-text">Add a Product</a>
-                <a th:href="@{/crash}" class="sidebar-text">Crash</a>
-            </div>
-            <div id="content">
-                <th:block th:include="${template}"/>
+            <div id="page">
+                <div id="sideBar">
+                    <div class="sidebar-text sidebar-title">Weight Reductor</div>
+                    <a th:href="@{/}" class="sidebar-text">Home</a>
+                    <a th:href="@{/products}" class="sidebar-text">All Products</a>
+                    <a th:href="@{/products/add}" class="sidebar-text">Add a Product</a>
+                    <a th:href="@{/crash}" class="sidebar-text">Crash</a>
+                </div>
+                <div id="content">
+                    <th:block th:include="${template}"/>
+                </div>
             </div>
         </div>
 
         <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
         <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
-        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
     </body>
 
