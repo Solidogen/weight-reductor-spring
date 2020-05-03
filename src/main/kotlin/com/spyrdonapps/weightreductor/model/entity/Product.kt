@@ -9,15 +9,15 @@ import javax.validation.constraints.NotNull
 @Table(name = "products")
 class Product : NamedEntity() {
 
-    @Column(name = "protein", precision = 5, scale = 1)
+    @Column(name = "protein")
     @NotNull
     var protein: Float? = null
 
-    @Column(name = "carbs", precision = 5, scale = 1)
+    @Column(name = "carbs")
     @NotNull
     var carbs: Float? = null
 
-    @Column(name = "fat", precision = 5, scale = 1)
+    @Column(name = "fat")
     @NotNull
     var fat: Float? = null
 

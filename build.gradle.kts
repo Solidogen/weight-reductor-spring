@@ -66,6 +66,8 @@ dependencies {
 
     // todo development only
     implementation("org.springframework.boot:spring-boot-devtools")
+
+    implementation("org.thymeleaf.extras:thymeleaf-extras-java8time")
 }
 
 // TODO is this needed or relevant? maybe it will break something?

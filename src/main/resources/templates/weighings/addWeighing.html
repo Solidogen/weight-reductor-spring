@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/rootLayout :: rootLayout (~{::body},'addWeighing')}">
+    <body>
+        <h2>Add a Weighing</h2>
+        <form th:object="${weighing}" class="form-horizontal" method="post">
+            <div class="form-group has-feedback">
+                <input th:replace="~{fragments/inputField :: input ('Weight', 'weight', 'number')}"/>
+                <input th:replace="~{fragments/inputField :: input ('Date', 'date', 'date')}"/>
+            </div>
+            <button th:with="text=${weighing['new']} ? 'Add Weighing' : 'Update Weighing'"
+                    type="submit"
+                    class="small blue button"
+                    th:text="${text}">
+                Add Product
+            </button>
+        </form>
+    </body>
+</html>

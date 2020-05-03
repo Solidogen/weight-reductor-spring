@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/rootLayout :: rootLayout (~{::body},'allWeighings')}">
+    <body>
+        <h1 class="page-title">All Weighings</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Weight</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${weighings.empty}">
+                    <td colspan="2"> No Weighings Available </td>
+                </tr>
+                <tr th:each="weighing : ${weighings}">
+                    <td><span th:text="${weighing.weight}">?</span></td>
+                    <td><span th:text="${weighing.date}">?</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
