@@ -32,7 +32,7 @@ class WeighingController(private val weighingRepository: WeighingRepository) {
 
     @GetMapping("/weighings")
     fun showAllWeighings(model: MutableMap<String, Any>): String {
-        val weighings = weighingRepository.findAll()
+        val weighings = weighingRepository.findAll().sortedBy { it.date }
         model["weighings"] = weighings
         return "weighings/allWeighings"
     }

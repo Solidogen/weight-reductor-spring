@@ -3,23 +3,6 @@
       th:replace="~{fragments/rootLayout :: rootLayout (~{::body}, 'allWeighings', 'allWeighings')}">
     <body>
         <h1 class="page-title">All Weighings</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Weight</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:if="${weighings.empty}">
-                    <td colspan="2"> No Weighings Available </td>
-                </tr>
-                <tr th:each="weighing : ${weighings}">
-                    <td><span th:text="${weighing.weight}">?</span></td>
-                    <td><span th:text="${weighing.date}">?</span></td>
-                </tr>
-            </tbody>
-        </table>
-        <div id="weighingsChartContainer" style="height: 370px; width: 100%; background: #269CE9"></div>
+        <div id="weighingsChartContainer" class="margin-top-10"></div>
     </body>
 </html>

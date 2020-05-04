@@ -1,28 +1,47 @@
 function pageLoaded(pageName) {
-    if (pageName === "allWeighings") {
-        loadWeighingChart();
-    }
+    console.log("Loaded fragment page: " + pageName);
 }
 
-function loadWeighingChart() {
+function loadWeighingsChart(pageName, weighings) {
+    if (pageName !== "allWeighings") {
+        return;
+    }
+    console.log("Showing weighings chart");
+
+    let dataPoints = [];
+
+    for (let i = 0; i < weighings.length; i++) {
+        let weighing = weighings[i];
+        dataPoints.push({
+            x: new Date(
+                parseInt(weighing.date.split("-")[0]),
+                parseInt(weighing.date.split("-")[1]),
+                parseInt(weighing.date.split("-")[2])
+            ),
+            y: parseFloat(weighing.weight)
+        });
+    }
+
     var chart = new CanvasJS.Chart("weighingsChartContainer", {
-        theme: "light1", // "light2", "dark1", "dark2"
-        animationEnabled: false, // change to true
-/*        title: {
-            text: "Basic Column Chart"
-        },*/
-        data: [
-            {
-                type: "column",
-                dataPoints: [
-                    {label: "apple", y: 10},
-                    {label: "orange", y: 15},
-                    {label: "banana", y: 25},
-                    {label: "mango", y: 30},
-                    {label: "grape", y: 28}
-                ]
-            }
-        ]
+        animationEnabled: true,
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        exportEnabled: true,
+        axisX: {
+            interval: 1,
+            valueFormatString: "MMM"
+        },
+        axisY: {
+            title: "Weight [kg]"
+        },
+        toolTip: {
+            content: "Date: {x}<br /><strong>Weight: {y} kg</strong>"
+        },
+        data: [{
+            type: "line",
+            yValueFormatString: "##0.00",
+            dataPoints: dataPoints
+        }]
     });
+
     chart.render();
 }
