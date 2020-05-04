@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/rootLayout :: rootLayout (~{::body},'addWeighing')}">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/rootLayout :: rootLayout (~{::body}, 'addWeighing', 'addWeighing')}">
     <body>
         <h2>Add a Weighing</h2>
         <form th:object="${weighing}" class="form-horizontal" method="post">

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/rootLayout :: rootLayout (~{::body},'allProducts')}">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/rootLayout :: rootLayout (~{::body}, 'allProducts', 'allProducts')}">
     <body>
         <h1 class="page-title">All Products</h1>
         <table class="table">

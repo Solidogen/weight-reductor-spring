@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/rootLayout :: rootLayout (~{::body},'allWeighings')}">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/rootLayout :: rootLayout (~{::body}, 'allWeighings', 'allWeighings')}">
     <body>
         <h1 class="page-title">All Weighings</h1>
         <table class="table">
@@ -19,5 +20,6 @@
                 </tr>
             </tbody>
         </table>
+        <div id="weighingsChartContainer" style="height: 370px; width: 100%; background: #269CE9"></div>
     </body>
 </html>
