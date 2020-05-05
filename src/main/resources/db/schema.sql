@@ -12,6 +12,6 @@ CREATE TABLE IF NOT EXISTS weighings
 (
     id     INT(9) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     weight FLOAT,
-    date   DATE,
+    date   DATE UNIQUE,
     INDEX (date)
 ) engine = InnoDB;

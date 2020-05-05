@@ -2,19 +2,14 @@ package com.spyrdonapps.weightreductor.controller
 
 import com.spyrdonapps.weightreductor.model.entity.Weighing
 import com.spyrdonapps.weightreductor.model.repository.WeighingRepository
-import com.spyrdonapps.weightreductor.model.validator.ProductValidator
 import com.spyrdonapps.weightreductor.model.validator.WeightingValidator
 import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.WebDataBinder
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.InitBinder
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
-import java.time.LocalDate
 import javax.validation.Valid
 
 @Controller
@@ -48,7 +43,12 @@ class WeighingController(private val weighingRepository: WeighingRepository) {
         return if (result.hasErrors()) {
             return "weighings/addWeighing"
         } else {
-            weighingRepository.save(weighing)
+            val cachedWeighing = weighingRepository.findWeighingByDate(weighing.date!!)
+            if (cachedWeighing != null) {
+                weighingRepository.updateWeightById(cachedWeighing.id!!, weighing.weight!!)
+            } else {
+                weighingRepository.save(weighing)
+            }
             "redirect:/weighings"
         }
     }
