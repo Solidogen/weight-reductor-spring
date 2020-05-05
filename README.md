@@ -2,6 +2,9 @@
 
 ### Weight Reductor
 
+Site:
+https://weightreductor.herokuapp.com
+
 Spring web project
 - Kotlin language
 - MySQL database
