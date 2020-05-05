@@ -3,6 +3,9 @@
       th:replace="~{fragments/rootLayout :: rootLayout (~{::body}, 'allWeighings', 'allWeighings')}">
     <body>
         <h1 class="page-title">All Weighings</h1>
+        <div th:if="${weighings.empty}" class="margin-top-10">
+            <h2>Chart will appear when you add weighings</h2>
+        </div>
         <div id="weighingsChartContainer" class="margin-top-10"></div>
     </body>
 </html>

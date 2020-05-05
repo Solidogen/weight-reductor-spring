@@ -15,7 +15,7 @@ function loadWeighingsChart(pageName, weighings) {
         dataPoints.push({
             x: new Date(
                 parseInt(weighing.date.split("-")[0]),
-                parseInt(weighing.date.split("-")[1]),
+                parseInt(weighing.date.split("-")[1]) - 1,
                 parseInt(weighing.date.split("-")[2])
             ),
             y: parseFloat(weighing.weight)
