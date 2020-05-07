@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "meals")
-class Meal : BaseEntity() {
+class Meal : NamedEntity() {
 
     @OneToMany(cascade = [CascadeType.ALL], mappedBy = "meal")
     var productsWithWeights: MutableSet<ProductWithWeight> = HashSet()

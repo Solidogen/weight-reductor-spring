@@ -6,7 +6,8 @@
         <form th:object="${meal}" class="form-horizontal" method="post">
             <div class="form-group has-feedback">
                 <input th:replace="~{fragments/inputField :: input ('Date', 'date', 'date')}"/>
-<!--                <input th:replace="~{fragments/inputField :: input ('Weight', 'weight', 'number')}"/>-->
+                <input th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}"/>
+
             </div>
             <button th:with="text=${meal['new']} ? 'Add a Meal' : 'Update a Meal'"
                     type="submit"

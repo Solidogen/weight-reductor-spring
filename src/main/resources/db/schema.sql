@@ -1,3 +1,6 @@
+# drop database weightreductor;
+# create database weightreductor;
+
 CREATE TABLE IF NOT EXISTS products
 (
     id      INT(9) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -19,6 +22,7 @@ CREATE TABLE IF NOT EXISTS weighings
 CREATE TABLE IF NOT EXISTS meals
 (
     id   INT(9) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
     date DATE
 ) engine = InnoDB;
 

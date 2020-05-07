@@ -4,6 +4,7 @@ import com.spyrdonapps.weightreductor.model.entity.Meal
 import com.spyrdonapps.weightreductor.model.entity.Product
 import com.spyrdonapps.weightreductor.model.entity.ProductWithWeight
 import com.spyrdonapps.weightreductor.model.repository.MealRepository
+import com.spyrdonapps.weightreductor.model.repository.ProductRepository
 import org.springframework.stereotype.Controller
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.WebDataBinder
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping
 import javax.validation.Valid
 
 @Controller
-class MealController(private val mealRepository: MealRepository) {
+class MealController(
+    private val mealRepository: MealRepository,
+    private val productRepository: ProductRepository
+) {
 
     @InitBinder
     fun setAllowedFields(dataBinder: WebDataBinder) {
@@ -30,6 +34,7 @@ class MealController(private val mealRepository: MealRepository) {
     @GetMapping("/meals/add")
     fun initAddMealForm(model: MutableMap<String, Any>): String {
         model["meal"] = Meal()
+        model["products"] = productRepository.findAll()
         return "meals/addMeal"
     }
 
