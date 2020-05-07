@@ -16,7 +16,5 @@ interface MealRepository : Repository<Meal, Int> {
 
     fun findMealById(id: Int): Meal
 
-    //    @Query TODO LEFT JOIN PRODUCTS WITH WEIGHTS
-    // przy find meals by id/date trzeba bedzie left join z productswithweights dopiero
     fun findMealsByDate(date: LocalDate): List<Meal>
 }

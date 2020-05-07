@@ -43,6 +43,8 @@ class MealController(
         return if (result.hasErrors()) {
             return "meals/addMeal"
         } else {
+            // todo delete all those
+            val mealsWithThisDate = mealRepository.findMealsByDate(meal.date!!)
 
             val productWithWeight1 = ProductWithWeight().apply {
                 weight = kotlin.random.Random.nextInt(1, 100).toFloat()
