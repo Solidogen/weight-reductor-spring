@@ -14,7 +14,7 @@
             </thead>
             <tbody>
                 <tr th:if="${products.empty}">
-                    <td colspan="2"> No Products Available </td>
+                    <td colspan="4"> No Products Available </td>
                 </tr>
                 <tr th:each="product : ${products}">
                     <td><span th:text="${product.name}">?</span></td>

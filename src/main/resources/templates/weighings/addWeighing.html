@@ -8,11 +8,11 @@
                 <input th:replace="~{fragments/inputField :: input ('Weight', 'weight', 'number')}"/>
                 <input th:replace="~{fragments/inputField :: input ('Date', 'date', 'date')}"/>
             </div>
-            <button th:with="text=${weighing['new']} ? 'Add Weighing' : 'Update Weighing'"
+            <button th:with="text=${weighing['new']} ? 'Add a Weighing' : 'Update a Weighing'"
                     type="submit"
                     class="small blue button"
                     th:text="${text}">
-                Add Product
+                Add a Weighing
             </button>
         </form>
     </body>

@@ -10,11 +10,11 @@
                 <input th:replace="~{fragments/inputField :: input ('Carbs', 'carbs', 'number')}"/>
                 <input th:replace="~{fragments/inputField :: input ('Fat', 'fat', 'number')}"/>
             </div>
-            <button th:with="text=${product['new']} ? 'Add Product' : 'Update Product'"
+            <button th:with="text=${product['new']} ? 'Add a Product' : 'Update a Product'"
                     type="submit"
                     class="small blue button"
                     th:text="${text}">
-                Add Product
+                Add a Product
             </button>
         </form>
     </body>

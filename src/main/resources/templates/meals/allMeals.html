@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/rootLayout :: rootLayout (~{::body}, 'allMeals', 'allMeals')}">
+    <body>
+        <h1 class="page-title">All Meals</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>xx</th>
+                    <th>xx</th>
+                    <th>xx</th>
+                    <th>xx</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${meals.empty}">
+                    <td colspan="4"> No Meals Available</td>
+                </tr>
+                <tr th:each="meal : ${meals}">
+                    <td><span th:text="${meal.date}">?</span></td>
+                    <td>
+                        <div th:each="productWithWeight : ${meal.productsWithWeights}">
+                            <p><span th:text="${productWithWeight.weight}">?</span></p>
+                            <p><span th:text="${productWithWeight.product.protein}">?</span></p>
+                            <p><span th:text="${productWithWeight.product.carbs}">?</span></p>
+                            <p><span th:text="${productWithWeight.product.fat}">?</span></p>
+                            <br>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
