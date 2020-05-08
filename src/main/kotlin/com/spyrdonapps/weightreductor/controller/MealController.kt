@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult
 import org.springframework.web.bind.WebDataBinder
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.InitBinder
+import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
 import javax.validation.Valid
 
@@ -18,6 +19,9 @@ class MealController(
     private val mealRepository: MealRepository,
     private val productRepository: ProductRepository
 ) {
+
+    @ModelAttribute("products")
+    fun allProducts(): Collection<Product> = productRepository.findAll()
 
     @InitBinder
     fun setAllowedFields(dataBinder: WebDataBinder) {
@@ -34,7 +38,6 @@ class MealController(
     @GetMapping("/meals/add")
     fun initAddMealForm(model: MutableMap<String, Any>): String {
         model["meal"] = Meal()
-        model["products"] = productRepository.findAll()
         return "meals/addMeal"
     }
 

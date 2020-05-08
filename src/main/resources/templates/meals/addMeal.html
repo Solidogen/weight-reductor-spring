@@ -7,7 +7,7 @@
             <div class="form-group has-feedback">
                 <input th:replace="~{fragments/inputField :: input ('Date', 'date', 'date')}"/>
                 <input th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}"/>
-
+<!--                <input th:replace="~{fragments/selectField :: select ('Type', 'type', ${products})}" />-->
             </div>
             <button th:with="text=${meal['new']} ? 'Add a Meal' : 'Update a Meal'"
                     type="submit"
