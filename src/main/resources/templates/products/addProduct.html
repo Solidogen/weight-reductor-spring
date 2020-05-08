@@ -6,15 +6,15 @@
         <form th:object="${product}" class="form-horizontal" method="post">
             <div class="form-group has-feedback">
                 <input th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}"/>
-                <input th:replace="~{fragments/inputField :: input ('Protein', 'protein', 'number')}"/>
-                <input th:replace="~{fragments/inputField :: input ('Carbs', 'carbs', 'number')}"/>
-                <input th:replace="~{fragments/inputField :: input ('Fat', 'fat', 'number')}"/>
+                <input th:replace="~{fragments/inputField :: input ('Protein [per 100g]', 'protein', 'number')}"/>
+                <input th:replace="~{fragments/inputField :: input ('Carbs [per 100g]', 'carbs', 'number')}"/>
+                <input th:replace="~{fragments/inputField :: input ('Fat [per 100g]', 'fat', 'number')}"/>
             </div>
-            <button th:with="text=${product['new']} ? 'Add Product' : 'Update Product'"
+            <button th:with="text=${product['new']} ? 'Add a Product' : 'Update a Product'"
                     type="submit"
                     class="small blue button"
                     th:text="${text}">
-                Add Product
+                Add a Product
             </button>
         </form>
     </body>

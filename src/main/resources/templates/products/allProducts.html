@@ -7,14 +7,14 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Protein</th>
-                    <th>Carbs</th>
-                    <th>Fat</th>
+                    <th>Protein [per 100g]</th>
+                    <th>Carbs [per 100g]</th>
+                    <th>Fat [per 100g]</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:if="${products.empty}">
-                    <td colspan="2"> No Products Available </td>
+                    <td colspan="4"> No Products Available </td>
                 </tr>
                 <tr th:each="product : ${products}">
                     <td><span th:text="${product.name}">?</span></td>
