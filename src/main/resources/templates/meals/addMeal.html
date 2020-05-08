@@ -3,12 +3,56 @@
       th:replace="~{fragments/rootLayout :: rootLayout (~{::body}, 'addMeal', 'addMeal')}">
     <body>
         <h2>Add a Meal</h2>
+
+<!--     TODO !   may crash because not it's own file -->
+<!--        <div th:fragment="template">-->
+<!--            <input th:replace="~{fragments/inputField :: input ('Weight [g]', ${weight}, 'number')}"/>-->
+<!--            <input th:replace="~{fragments/selectField :: select ('Product', ${product}, ${products})}"/>-->
+<!--        </div>-->
+
         <form th:object="${meal}" class="form-horizontal" method="post">
             <div class="form-group has-feedback">
                 <input th:replace="~{fragments/inputField :: input ('Date', 'date', 'date')}"/>
                 <input th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}"/>
-<!--                <input th:replace="~{fragments/selectField :: select ('Type', 'type', ${products})}" />-->
+                <br>
             </div>
+
+            <div th:each="p : *{productsWithWeights}">
+<!--                <input th:field="*{productsWithWeights[__${pStat.index}__].weight}" />-->
+                <input th:replace="~{fragments/selectField :: select ('Product', 'productsWithWeights[__${pStat.index}__].product', ${products})}"/>
+                <input th:replace="~{fragments/inputField :: input ('Weight [g]', 'productsWithWeights[__${pStat.index}__].weight', 'number')}"/>
+                <br>
+            </div>
+
+<!--            <div th:each="productWithWeight : ${meal.productsWithWeights}"-->
+<!--                 th:with="weight=${productWithWeight.weight}, product=${productWithWeight.product}">-->
+<!--                <input th:replace="~{fragments/inputField :: input ('Weight [g]', ${weight}, 'number')}"/>-->
+<!--                <input th:replace="~{fragments/selectField :: select ('Product', 'product', ${products})}"/>-->
+<!--            </div>-->
+
+
+<!--   TODO          ORIGINAL -->
+<!--            <div th:each="productWithWeight : ${meal.productsWithWeights}"-->
+<!--                 th:with="weight=${productWithWeight.weight}, product=${productWithWeight.product}">-->
+<!--                <input th:replace="~{fragments/inputField :: input ('Weight [g]', ${weight}, 'number')}"/>-->
+<!--                <input th:replace="~{fragments/selectField :: select ('Product', 'product', ${products})}"/>-->
+<!--            </div>-->
+
+
+<!--            <div th:each="productWithWeight : ${meal.productsWithWeights}"-->
+<!--                 th:with="weight=${productWithWeight.weight}, product=${productWithWeight.product}">-->
+<!--&lt;!&ndash;                <input th:replace="~{fragments/inputField :: input ('Weight [g]', ${weight}, 'number')}"/>&ndash;&gt;-->
+<!--                <select th:field="*{__${product}__}">-->
+<!--                    <option th:each="item : ${products}"-->
+<!--                            th:value="${item}"-->
+<!--                            th:text="${item}">Item-->
+<!--                    </option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div th:each="productWithWeight : ${meal.productsWithWeights}"-->
+<!--                 th:include="productWithWeight :: template"-->
+<!--                 th:with="weight=${productWithWeight.weight}, product=${productWithWeight.product}">-->
+<!--            </div>-->
             <button th:with="text=${meal['new']} ? 'Add a Meal' : 'Update a Meal'"
                     type="submit"
                     class="small blue button"

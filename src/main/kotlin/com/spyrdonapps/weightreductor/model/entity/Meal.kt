@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull
 class Meal : NamedEntity() {
 
     @OneToMany(cascade = [CascadeType.ALL], mappedBy = "meal")
-    var productsWithWeights: MutableSet<ProductWithWeight> = HashSet()
+    var productsWithWeights: MutableList<ProductWithWeight> = ArrayList()
 
     @Column(name = "date")
     @NotNull

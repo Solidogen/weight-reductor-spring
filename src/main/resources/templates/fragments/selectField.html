@@ -10,7 +10,7 @@
                         <select th:field="*{__${name}__}">
                             <option th:each="item : ${items}"
                                     th:value="${item}"
-                                    th:text="${item}">Item
+                                    th:text="${item.name}">Item
                             </option>
                         </select>
                         <th:block th:if="${!valid}">
