@@ -1,8 +1,8 @@
 package com.spyrdonapps.weightreductor.model.entity
 
+import com.spyrdonapps.weightreductor.util.utils.orZero
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDate
-import java.util.HashSet
 import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -21,4 +21,19 @@ class Meal : NamedEntity() {
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     var date: LocalDate? = null
+
+    val totalCalories: Float
+        get() = productsWithWeights.map { it.totalCalories }.sum()
+
+    val totalWeight: Float
+        get() = productsWithWeights.map { it.weight.orZero() }.sum()
+
+    val totalProtein: Float
+        get() = productsWithWeights.map { it.product?.protein.orZero() }.sum()
+
+    val totalCarbs: Float
+        get() = productsWithWeights.map { it.product?.carbs.orZero() }.sum()
+
+    val totalFat: Float
+        get() = productsWithWeights.map { it.product?.fat.orZero() }.sum()
 }

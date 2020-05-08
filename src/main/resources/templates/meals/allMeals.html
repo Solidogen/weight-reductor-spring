@@ -3,32 +3,31 @@
       th:replace="~{fragments/rootLayout :: rootLayout (~{::body}, 'allMeals', 'allMeals')}">
     <body>
         <h1 class="page-title">All Meals</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>xx</th>
-                    <th>xx</th>
-                    <th>xx</th>
-                    <th>xx</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:if="${meals.empty}">
-                    <td colspan="4"> No Meals Available</td>
-                </tr>
-                <tr th:each="meal : ${meals}">
-                    <td><span th:text="${meal.date}">?</span></td>
-                    <td>
-                        <div th:each="productWithWeight : ${meal.productsWithWeights}">
-                            <p><span th:text="${productWithWeight.weight}">?</span></p>
-                            <p><span th:text="${productWithWeight.product.protein}">?</span></p>
-                            <p><span th:text="${productWithWeight.product.carbs}">?</span></p>
-                            <p><span th:text="${productWithWeight.product.fat}">?</span></p>
-                            <br>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div th:if="${meals.empty}">
+            No Meals Available
+        </div>
+        <br>
+        <div th:each="meal : ${meals}">
+            <p>===========================</p>
+            <p><span th:text="${meal.name}">?</span></p>
+            <p><span th:text="${meal.date}">?</span></p>
+            <br>
+            <p>Total kcal - <span th:text="${meal.totalCalories}">?</span></p>
+            <p>Total gram - <span th:text="${meal.totalWeight}">?</span></p>
+            <p>Total protein - <span th:text="${meal.totalProtein}">?</span></p>
+            <p>Total carbs - <span th:text="${meal.totalCarbs}">?</span></p>
+            <p>Total fat - <span th:text="${meal.totalFat}">?</span></p>
+            <br>
+            <div th:each="productWithWeight : ${meal.productsWithWeights}">
+                    <p><span th:text="${productWithWeight.product.name}">?</span></p>
+                    <p>gram <span th:text="${productWithWeight.weight}">?</span></p>
+                    <p>Protein <span th:text="${productWithWeight.product.protein}">?</span></p>
+                    <p>Carbs <span th:text="${productWithWeight.product.carbs}">?</span></p>
+                    <p>Fat <span th:text="${productWithWeight.product.fat}">?</span></p>
+                    <p>kcal - <span th:text="${productWithWeight.totalCalories}">?</span></p>
+                    <br>
+                </div>
+            <br>
+        </div>
     </body>
 </html>

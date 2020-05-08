@@ -6,7 +6,6 @@ import com.spyrdonapps.weightreductor.model.validator.ProductValidator
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.ui.set
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.WebDataBinder
 import org.springframework.web.bind.annotation.GetMapping
@@ -57,23 +56,5 @@ class ProductController(private val productRepository: ProductRepository) {
             productRepository.save(product)
             "redirect:/products/" + product.id
         }
-    }
-
-    /*
-    * Debugging endpoints for REST-like calls
-    * */
-
-    @GetMapping("/products_plain", produces = [MediaType.TEXT_PLAIN_VALUE])
-    @ResponseBody
-    fun showAllProductsInPlainText(): String {
-        val products = productRepository.findAll()
-        return products.joinToString(separator = "\n") { it.toString() }
-    }
-
-    @GetMapping("/products_plain/{id}", produces = [MediaType.TEXT_PLAIN_VALUE])
-    @ResponseBody
-    fun showProductByIdInPlainText(@PathVariable("id") productId: Int): String {
-        val product = productRepository.findProductById(productId)
-        return product.toString()
     }
 }

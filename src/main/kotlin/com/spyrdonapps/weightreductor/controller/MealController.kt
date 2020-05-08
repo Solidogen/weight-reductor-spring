@@ -21,7 +21,7 @@ class MealController(
 ) {
 
     @ModelAttribute("products")
-    fun allProducts(): Collection<Product> = productRepository.findAll()
+    fun allProducts(): Iterable<Product> = productRepository.findAll().sortedBy { it.name } // todo sort in hibernate
 
     @InitBinder
     fun setAllowedFields(dataBinder: WebDataBinder) {
@@ -38,10 +38,8 @@ class MealController(
     @GetMapping("/meals/add")
     fun initAddMealForm(model: MutableMap<String, Any>): String {
         model["meal"] = Meal().apply {
-            repeat(2) {
-                productsWithWeights.add(ProductWithWeight().apply {
-//                    weight = 10f
-                })
+            repeat(6) {
+                productsWithWeights.add(ProductWithWeight())
             }
         }
         return "meals/addMeal"
@@ -52,9 +50,26 @@ class MealController(
         return if (result.hasErrors()) {
             return "meals/addMeal"
         } else {
-            meal.productsWithWeights.forEach { it.meal = meal }
-            mealRepository.save(meal)
-            "redirect:/meals/"
+            var canSave = true
+            meal.productsWithWeights.forEach {
+                // not whole item is filled
+                if ((it.product != null && it.weight == null) || (it.product == null && it.weight != null)) {
+                    canSave = false
+                }
+            }
+            if (canSave) {
+                // delete fully unused
+                meal.productsWithWeights.reversed().forEach {
+                    if (it.product == null && it.weight == null) {
+                        meal.productsWithWeights.remove(it)
+                    }
+                }
+                meal.productsWithWeights.forEach { it.meal = meal }
+                mealRepository.save(meal)
+                "redirect:/meals/"
+            } else {
+                return "meals/addMeal"
+            }
         }
     }
 }

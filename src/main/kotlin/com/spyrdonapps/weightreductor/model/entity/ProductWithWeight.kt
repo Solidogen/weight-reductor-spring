@@ -1,5 +1,6 @@
 package com.spyrdonapps.weightreductor.model.entity
 
+import com.spyrdonapps.weightreductor.util.utils.CalorieUtils
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.JoinColumn
@@ -22,4 +23,7 @@ class ProductWithWeight : BaseEntity() {
     @Column(name = "weight")
     @NotNull
     var weight: Float? = null
+
+    val totalCalories: Float
+        get() = CalorieUtils.calculateTotalCalories(this)
 }

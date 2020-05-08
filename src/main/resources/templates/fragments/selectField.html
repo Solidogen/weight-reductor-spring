@@ -8,8 +8,9 @@
                     <label th:text="${label}">Label</label>
                     <div>
                         <select th:field="*{__${name}__}">
+                            <option value=""></option>
                             <option th:each="item : ${items}"
-                                    th:value="${item}"
+                                    th:value="${item.id}"
                                     th:text="${item.name}">Item
                             </option>
                         </select>
