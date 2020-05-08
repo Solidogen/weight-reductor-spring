@@ -66,6 +66,9 @@ class MealController(
                         meal.productsWithWeights.remove(it)
                     }
                 }
+
+                // todo when 2 same products are selected, merge them into one adding weights
+
                 meal.productsWithWeights.forEach { it.meal = meal }
                 mealRepository.save(meal)
                 "redirect:/meals/"
