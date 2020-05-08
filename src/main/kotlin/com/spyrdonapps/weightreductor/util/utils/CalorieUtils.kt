@@ -4,13 +4,12 @@ import com.spyrdonapps.weightreductor.model.entity.ProductWithWeight
 
 object CalorieUtils {
 
-    val kcalPerProteinGram = 4
-    val kcalPerCarbsGram = 4
-    val kcalPerFatGram = 9
+    private const val kcalPerProteinGram = 4
+    private const val kcalPerCarbsGram = 4
+    private const val kcalPerFatGram = 9
 
-    fun calculateTotalCalories(productWithWeight: ProductWithWeight): Float =
+    fun calculateKcal(productWithWeight: ProductWithWeight): Float =
         with(productWithWeight) {
-            val weightMultiplier = weight.orZero() / 100f
             val kcalFromProtein = product?.protein.orZero() * kcalPerProteinGram
             val kcalFromCarbs = product?.carbs.orZero() * kcalPerCarbsGram
             val kcalFromFat = product?.fat.orZero() * kcalPerFatGram

@@ -22,18 +22,18 @@ class Meal : NamedEntity() {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     var date: LocalDate? = null
 
-    val totalCalories: Float
-        get() = productsWithWeights.map { it.totalCalories }.sum()
+    val kcal: Float
+        get() = productsWithWeights.map { it.kcal }.sum()
 
-    val totalWeight: Float
+    val weight: Float
         get() = productsWithWeights.map { it.weight.orZero() }.sum()
 
-    val totalProtein: Float
+    val protein: Float
         get() = productsWithWeights.map { it.product?.protein.orZero() }.sum()
 
-    val totalCarbs: Float
+    val carbs: Float
         get() = productsWithWeights.map { it.product?.carbs.orZero() }.sum()
 
-    val totalFat: Float
+    val fat: Float
         get() = productsWithWeights.map { it.product?.fat.orZero() }.sum()
 }

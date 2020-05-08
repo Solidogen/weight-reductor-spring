@@ -1,6 +1,7 @@
 package com.spyrdonapps.weightreductor.model.entity
 
 import com.spyrdonapps.weightreductor.util.utils.CalorieUtils
+import com.spyrdonapps.weightreductor.util.utils.orZero
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.JoinColumn
@@ -24,6 +25,18 @@ class ProductWithWeight : BaseEntity() {
     @NotNull
     var weight: Float? = null
 
-    val totalCalories: Float
-        get() = CalorieUtils.calculateTotalCalories(this)
+    val kcal: Float
+        get() = CalorieUtils.calculateKcal(this)
+
+    val protein: Float
+        get() = weightMultiplier * product?.protein.orZero()
+
+    val carbs: Float
+        get() = weightMultiplier * product?.carbs.orZero()
+
+    val fat: Float
+        get() = weightMultiplier * product?.fat.orZero()
+
+    val weightMultiplier: Float
+        get() = weight.orZero() / 100
 }

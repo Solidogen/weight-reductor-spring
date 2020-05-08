@@ -50,6 +50,8 @@ class MealController(
         return if (result.hasErrors()) {
             return "meals/addMeal"
         } else {
+            // todo ultra refactor
+
             var canSave = true
             meal.productsWithWeights.forEach {
                 // not whole item is filled
