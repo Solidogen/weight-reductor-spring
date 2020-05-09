@@ -40,6 +40,19 @@ fun Errors.rejectIfLessThan(
     }
 }
 
+fun Errors.rejectIfLessOrEqualTo(
+    value: Float?,
+    propertyName: String,
+    minimum: Int,
+    message: String = "${propertyName.capitalize()} value must be higher than $minimum"
+) {
+    value?.let {
+        if (it <= minimum) {
+            rejectValue(propertyName, required, message)
+        }
+    }
+}
+
 fun Errors.rejectIfMoreThan(
     value: Float?,
     propertyName: String,
@@ -48,6 +61,19 @@ fun Errors.rejectIfMoreThan(
 ) {
     value?.let {
         if (it > maximum) {
+            rejectValue(propertyName, required, message)
+        }
+    }
+}
+
+fun Errors.rejectIfMoreOrEqualTo(
+    value: Float?,
+    propertyName: String,
+    maximum: Int,
+    message: String = "${propertyName.capitalize()} value must be lower than $maximum"
+) {
+    value?.let {
+        if (it >= maximum) {
             rejectValue(propertyName, required, message)
         }
     }
