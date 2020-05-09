@@ -61,7 +61,8 @@ class MealController(
             }
             if (canSave) {
                 // delete fully unused
-                meal.productsWithWeights.reversed().forEach {
+                val listCopy = ArrayList(meal.productsWithWeights)
+                listCopy.forEach {
                     if (it.product == null && it.weight == null) {
                         meal.productsWithWeights.remove(it)
                     }
