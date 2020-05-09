@@ -1,4 +1,4 @@
-package com.spyrdonapps.weightreductor.controller
+package com.spyrdonapps.weightreductor.controller.web
 
 import com.spyrdonapps.weightreductor.model.entity.Meal
 import com.spyrdonapps.weightreductor.model.entity.Product
@@ -6,7 +6,6 @@ import com.spyrdonapps.weightreductor.model.entity.ProductWithWeight
 import com.spyrdonapps.weightreductor.model.repository.MealRepository
 import com.spyrdonapps.weightreductor.model.repository.ProductRepository
 import com.spyrdonapps.weightreductor.model.validator.MealValidator
-import com.spyrdonapps.weightreductor.model.validator.WeightingValidator
 import com.spyrdonapps.weightreductor.util.utils.orZero
 import org.springframework.stereotype.Controller
 import org.springframework.validation.BindingResult

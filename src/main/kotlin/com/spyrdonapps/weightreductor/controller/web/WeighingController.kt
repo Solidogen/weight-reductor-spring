@@ -1,4 +1,4 @@
-package com.spyrdonapps.weightreductor.controller
+package com.spyrdonapps.weightreductor.controller.web
 
 import com.spyrdonapps.weightreductor.model.entity.Weighing
 import com.spyrdonapps.weightreductor.model.repository.WeighingRepository
