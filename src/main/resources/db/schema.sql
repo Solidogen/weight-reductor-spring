@@ -1,6 +1,8 @@
 # drop database weightreductor;
 # create database weightreductor;
 
+ALTER DATABASE weightreductor CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+
 CREATE TABLE IF NOT EXISTS products
 (
     id      INT(9) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
