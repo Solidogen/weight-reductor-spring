@@ -1,18 +1,13 @@
-# drop database weightreductor;
-# create database weightreductor;
-
-ALTER DATABASE weightreductor CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
-
 CREATE TABLE IF NOT EXISTS products
 (
     id      INT(9) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name    VARCHAR(255) NOT NULL,
+    name    VARCHAR(100) NOT NULL,
     protein FLOAT NOT NULL,
     carbs   FLOAT NOT NULL,
     fat     FLOAT NOT NULL,
-    company    VARCHAR(255),
+    company    VARCHAR(100),
     INDEX (name)
-) engine = InnoDB;
+) engine = InnoDB CHARACTER SET=utf8mb4 collate=utf8mb4_bin;
 
 CREATE TABLE IF NOT EXISTS weighings
 (
@@ -20,14 +15,14 @@ CREATE TABLE IF NOT EXISTS weighings
     weight FLOAT NOT NULL,
     date   DATE UNIQUE NOT NULL,
     INDEX (date)
-) engine = InnoDB;
+) engine = InnoDB CHARACTER SET=utf8mb4 collate=utf8mb4_bin;
 
 CREATE TABLE IF NOT EXISTS meals
 (
     id   INT(9) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     date DATE NOT NULL
-) engine = InnoDB;
+) engine = InnoDB CHARACTER SET=utf8mb4 collate=utf8mb4_bin;
 
 CREATE TABLE IF NOT EXISTS products_with_weights
 (
@@ -37,5 +32,5 @@ CREATE TABLE IF NOT EXISTS products_with_weights
     weight     FLOAT NOT NULL,
     FOREIGN KEY (product_id) REFERENCES products (id),
     FOREIGN KEY (meal_id) REFERENCES meals (id)
-) engine = InnoDB;
+) engine = InnoDB CHARACTER SET=utf8mb4 collate=utf8mb4_bin;
 
