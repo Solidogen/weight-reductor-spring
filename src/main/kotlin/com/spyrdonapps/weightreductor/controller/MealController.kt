@@ -5,6 +5,9 @@ import com.spyrdonapps.weightreductor.model.entity.Product
 import com.spyrdonapps.weightreductor.model.entity.ProductWithWeight
 import com.spyrdonapps.weightreductor.model.repository.MealRepository
 import com.spyrdonapps.weightreductor.model.repository.ProductRepository
+import com.spyrdonapps.weightreductor.model.validator.MealValidator
+import com.spyrdonapps.weightreductor.model.validator.WeightingValidator
+import com.spyrdonapps.weightreductor.util.utils.orZero
 import org.springframework.stereotype.Controller
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.WebDataBinder
@@ -26,6 +29,11 @@ class MealController(
     @InitBinder
     fun setAllowedFields(dataBinder: WebDataBinder) {
         dataBinder.setDisallowedFields("id")
+    }
+
+    @InitBinder("meal")
+    fun initProductBinder(dataBinder: WebDataBinder) {
+        dataBinder.validator = MealValidator()
     }
 
     @GetMapping("/meals")
@@ -50,32 +58,33 @@ class MealController(
         return if (result.hasErrors()) {
             return "meals/addMeal"
         } else {
-            // todo ultra refactor
+            meal.removeEmptyProducts()
+            meal.mergeSameProductsWeights()
+            meal.productsWithWeights.forEach { it.meal = meal }
+            mealRepository.save(meal)
+            "redirect:/meals/"
+        }
+    }
 
-            var canSave = true
-            meal.productsWithWeights.forEach {
-                // not whole item is filled
-                if ((it.product != null && it.weight == null) || (it.product == null && it.weight != null)) {
-                    canSave = false
-                }
-            }
-            if (canSave) {
-                // delete fully unused
-                val listCopy = ArrayList(meal.productsWithWeights)
-                listCopy.forEach {
-                    if (it.product == null && it.weight == null) {
-                        meal.productsWithWeights.remove(it)
-                    }
-                }
-
-                // todo when 2 same products are selected, merge them into one adding weights
-
-                meal.productsWithWeights.forEach { it.meal = meal }
-                mealRepository.save(meal)
-                "redirect:/meals/"
-            } else {
-                return "meals/addMeal"
+    private fun Meal.removeEmptyProducts() {
+        val listCopy = ArrayList(productsWithWeights)
+        listCopy.forEach {
+            if (it.product == null && it.weight == null) {
+                productsWithWeights.remove(it)
             }
         }
+    }
+
+    private fun Meal.mergeSameProductsWeights() {
+        val groupedProducts = productsWithWeights.groupBy { it.product?.name.orEmpty() }
+        val mergedProducts = mutableListOf<ProductWithWeight>()
+
+        groupedProducts.forEach { (_, productsWithSameName) ->
+            mergedProducts.add(ProductWithWeight().apply {
+                this.product = productsWithSameName.first().product
+                this.weight = productsWithSameName.map { it.weight.orZero() }.sum()
+            })
+        }
+        productsWithWeights = mergedProducts
     }
 }
