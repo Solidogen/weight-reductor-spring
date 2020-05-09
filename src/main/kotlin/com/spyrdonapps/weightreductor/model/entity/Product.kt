@@ -3,6 +3,7 @@ package com.spyrdonapps.weightreductor.model.entity
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Table
+import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
 @Entity
@@ -21,8 +22,7 @@ class Product : NamedEntity() {
     @NotNull
     var fat: Float? = null
 
-    override fun toString(): String {
-        return "Product(name=$name, protein=$protein, carbs=$carbs, fat=$fat)"
-    }
+    @Column(name = "company")
+    var company: String? = null
 
 }

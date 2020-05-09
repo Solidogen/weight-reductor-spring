@@ -54,7 +54,7 @@ class ProductController(private val productRepository: ProductRepository) {
             return "products/addProduct"
         } else {
             productRepository.save(product)
-            "redirect:/products/" + product.id
+            "redirect:/products/"
         }
     }
 }

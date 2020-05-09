@@ -21,8 +21,4 @@ class Weighing : BaseEntity() {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     var date: LocalDate? = null
 
-    override fun toString(): String {
-        return "Weighing(weight=$weight, date=$date)"
-    }
-
 }

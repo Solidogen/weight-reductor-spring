@@ -6,6 +6,7 @@
         <form th:object="${product}" class="form-horizontal" method="post">
             <div class="form-group has-feedback">
                 <input th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}"/>
+                <input th:replace="~{fragments/inputField :: input ('Company', 'company', 'text')}"/>
                 <input th:replace="~{fragments/inputField :: input ('Protein [per 100g]', 'protein', 'number')}"/>
                 <input th:replace="~{fragments/inputField :: input ('Carbs [per 100g]', 'carbs', 'number')}"/>
                 <input th:replace="~{fragments/inputField :: input ('Fat [per 100g]', 'fat', 'number')}"/>
