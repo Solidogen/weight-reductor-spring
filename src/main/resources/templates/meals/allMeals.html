@@ -12,19 +12,19 @@
             <p><span th:text="${meal.name}">?</span></p>
             <p><span th:text="${meal.date}">?</span></p>
             <br>
-            <p>Total kcal - <span th:text="${meal.kcal}">?</span></p>
-            <p>Total gram - <span th:text="${meal.weight}">?</span></p>
-            <p>Total protein - <span th:text="${meal.protein}">?</span></p>
-            <p>Total carbs - <span th:text="${meal.carbs}">?</span></p>
-            <p>Total fat - <span th:text="${meal.fat}">?</span></p>
+            <p>Total kcal - <span th:text="${#numbers.formatDecimal(meal.kcal, 1, 1)}">?</span></p>
+            <p>Total gram - <span th:text="${#numbers.formatDecimal(meal.weight, 1, 1)}">?</span></p>
+            <p>Total protein - <span th:text="${#numbers.formatDecimal(meal.protein, 1, 1)}">?</span></p>
+            <p>Total carbs - <span th:text="${#numbers.formatDecimal(meal.carbs, 1, 1)}">?</span></p>
+            <p>Total fat - <span th:text="${#numbers.formatDecimal(meal.fat, 1, 1)}">?</span></p>
             <br>
             <div th:each="productWithWeight : ${meal.productsWithWeights}">
                     <p><span th:text="${productWithWeight.product.name}">?</span></p>
-                    <p>gram <span th:text="${productWithWeight.weight}">?</span></p>
-                    <p>Protein <span th:text="${productWithWeight.protein}">?</span></p>
-                    <p>Carbs <span th:text="${productWithWeight.carbs}">?</span></p>
-                    <p>Fat <span th:text="${productWithWeight.fat}">?</span></p>
-                    <p>kcal - <span th:text="${productWithWeight.kcal}">?</span></p>
+                    <p>gram <span th:text="${#numbers.formatDecimal(productWithWeight.weight, 1, 1)}">?</span></p>
+                    <p>Protein <span th:text="${#numbers.formatDecimal(productWithWeight.protein, 1, 1)}">?</span></p>
+                    <p>Carbs <span th:text="${#numbers.formatDecimal(productWithWeight.carbs, 1, 1)}">?</span></p>
+                    <p>Fat <span th:text="${#numbers.formatDecimal(productWithWeight.fat, 1, 1)}">?</span></p>
+                    <p>kcal - <span th:text="${#numbers.formatDecimal(productWithWeight.kcal, 1, 1)}">?</span></p>
                     <br>
                 </div>
             <br>
