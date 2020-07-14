@@ -4,6 +4,7 @@ import com.spyrdonapps.weightreductor.model.entity.Product
 import com.spyrdonapps.weightreductor.model.repository.ProductRepository
 import com.spyrdonapps.weightreductor.model.validator.ProductValidator
 import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
@@ -38,7 +39,7 @@ class ProductController(private val productRepository: ProductRepository) {
     @GetMapping("/products/{id}")
     fun showProductById(@PathVariable("id") productId: Int, model: Model): String {
         val product = productRepository.findProductById(productId)
-        model.addAttribute(product)
+        model.addAttribute(product ?: Product())
         return "products/product"
     }
 
