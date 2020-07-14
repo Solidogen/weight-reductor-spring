@@ -1,6 +1,5 @@
 package com.spyrdonapps.weightreductor.controller.api
 
-import com.spyrdonapps.weightreductor.model.entity.Product
 import com.spyrdonapps.weightreductor.model.repository.ProductRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
