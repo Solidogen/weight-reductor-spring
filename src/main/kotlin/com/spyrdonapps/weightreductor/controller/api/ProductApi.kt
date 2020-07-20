@@ -3,6 +3,7 @@ package com.spyrdonapps.weightreductor.controller.api
 import com.spyrdonapps.weightreductor.model.entity.Product
 import com.spyrdonapps.weightreductor.model.repository.ProductRepository
 import com.spyrdonapps.weightreductor.model.validator.ProductValidator
+import com.spyrdonapps.weightreductor.util.extensions.combinedMultilineError
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
@@ -45,8 +46,7 @@ class ProductApi(
     @PostMapping("/products/add")
     fun addProduct(@Valid product: Product, result: BindingResult): Any =
         if (result.hasErrors()) {
-            ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(result.allErrors.map { it.defaultMessage }.joinToString("\n"))
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result.allErrors.combinedMultilineError)
         } else {
             productRepository.save(product)
         }

@@ -2,6 +2,10 @@ package com.spyrdonapps.weightreductor.util.extensions
 
 import com.spyrdonapps.weightreductor.util.utils.required
 import org.springframework.validation.Errors
+import org.springframework.validation.ObjectError
+
+val List<ObjectError>.combinedMultilineError: String
+    get() = map { it.defaultMessage }.joinToString("\n")
 
 fun Errors.rejectIfNullOrBlank(
     value: String?,
