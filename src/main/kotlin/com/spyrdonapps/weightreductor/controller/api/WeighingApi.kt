@@ -35,13 +35,14 @@ class WeighingApi(private val weighingRepository: WeighingRepository) {
     fun getAllWeighings() = weighingRepository.findAll().sortedBy { it.date }
 
     @PostMapping("/weighings/add")
-    fun addWeighing(@Valid weighing: Weighing, result: BindingResult): Any =
+    fun addWeighing(@Valid weighing: Weighing, result: BindingResult): Any? =
         if (result.hasErrors()) {
             ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result.allErrors.combinedMultilineError)
         } else {
             val cachedWeighing = weighingRepository.findWeighingByDate(weighing.date!!)
             if (cachedWeighing != null) {
-                weighingRepository.updateWeightById(cachedWeighing.id!!, weighing.weight!!)
+                cachedWeighing.weight = weighing.weight
+                weighingRepository.save(cachedWeighing)
             } else {
                 weighingRepository.save(weighing)
             }

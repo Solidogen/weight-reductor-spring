@@ -45,7 +45,8 @@ class WeighingController(private val weighingRepository: WeighingRepository) {
         } else {
             val cachedWeighing = weighingRepository.findWeighingByDate(weighing.date!!)
             if (cachedWeighing != null) {
-                weighingRepository.updateWeightById(cachedWeighing.id!!, weighing.weight!!)
+                cachedWeighing.weight = weighing.weight
+                weighingRepository.save(cachedWeighing)
             } else {
                 weighingRepository.save(weighing)
             }
