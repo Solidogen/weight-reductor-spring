@@ -1,9 +1,12 @@
 package com.spyrdonapps.weightreductor.controller.api
 
-import com.spyrdonapps.weightreductor.model.entity.Weighing
-import com.spyrdonapps.weightreductor.model.repository.WeighingRepository
-import com.spyrdonapps.weightreductor.model.validator.WeightingValidator
+import com.spyrdonapps.weightreductor.model.entity.Meal
+import com.spyrdonapps.weightreductor.model.repository.MealRepository
+import com.spyrdonapps.weightreductor.model.repository.ProductRepository
+import com.spyrdonapps.weightreductor.model.validator.MealValidator
 import com.spyrdonapps.weightreductor.util.extensions.combinedMultilineError
+import com.spyrdonapps.weightreductor.util.extensions.mergeSameProductsWeights
+import com.spyrdonapps.weightreductor.util.extensions.removeEmptyProducts
 import com.spyrdonapps.weightreductor.util.utils.localhostUrl
 import com.spyrdonapps.weightreductor.util.utils.productionUrl
 import org.springframework.http.HttpStatus
@@ -21,32 +24,37 @@ import javax.validation.Valid
 @CrossOrigin(origins = [localhostUrl, productionUrl])
 @RequestMapping("/api")
 @RestController
-class WeighingApi(private val weighingRepository: WeighingRepository) {
+class MealApi(private val mealRepository: MealRepository) {
 
+    /*
+    * todo
+    *  not sure if binders are good here.
+    *  I will get request, not a valid object
+    *  probably to replace, also current validators are not good with REST API
+    *  As well in Product/Weighing apis
+    * */
+    
     @InitBinder
     fun setAllowedFields(dataBinder: WebDataBinder) {
         dataBinder.setDisallowedFields("id")
     }
 
-    @InitBinder("weighing")
+    @InitBinder("meal")
     fun initProductBinder(dataBinder: WebDataBinder) {
-        dataBinder.validator = WeightingValidator()
+        dataBinder.validator = MealValidator()
     }
 
-    @GetMapping("/weighings")
-    fun getAllWeighings() = weighingRepository.findAll().sortedBy { it.date }
+    @GetMapping("/meals")
+    fun getAllMeals(): MutableIterable<Meal> = mealRepository.findAll()
 
-    @PostMapping("/weighings/add")
-    fun addWeighing(@Valid weighing: Weighing, result: BindingResult): Any? =
+    @PostMapping("/meals/add")
+    fun addMeal(@Valid meal: Meal, result: BindingResult): Any? =
         if (result.hasErrors()) {
             ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result.allErrors.combinedMultilineError)
         } else {
-            val cachedWeighing = weighingRepository.findWeighingByDate(weighing.date!!)
-            if (cachedWeighing != null) {
-                cachedWeighing.weight = weighing.weight
-                weighingRepository.save(cachedWeighing)
-            } else {
-                weighingRepository.save(weighing)
-            }
+            meal.removeEmptyProducts()
+            meal.mergeSameProductsWeights()
+            meal.productsWithWeights.forEach { it.meal = meal }
+            mealRepository.save(meal)
         }
 }

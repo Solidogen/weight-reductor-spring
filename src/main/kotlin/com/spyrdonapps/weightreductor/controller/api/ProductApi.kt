@@ -4,6 +4,8 @@ import com.spyrdonapps.weightreductor.model.entity.Product
 import com.spyrdonapps.weightreductor.model.repository.ProductRepository
 import com.spyrdonapps.weightreductor.model.validator.ProductValidator
 import com.spyrdonapps.weightreductor.util.extensions.combinedMultilineError
+import com.spyrdonapps.weightreductor.util.utils.localhostUrl
+import com.spyrdonapps.weightreductor.util.utils.productionUrl
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
 
-@CrossOrigin(origins = ["http://localhost:3000", "https://weightreductor.netlify.app/"])
+@CrossOrigin(origins = [localhostUrl, productionUrl])
 @RequestMapping("/api")
 @RestController
 class ProductApi(private val productRepository: ProductRepository) {

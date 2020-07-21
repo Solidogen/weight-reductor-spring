@@ -6,7 +6,8 @@ import com.spyrdonapps.weightreductor.model.entity.ProductWithWeight
 import com.spyrdonapps.weightreductor.model.repository.MealRepository
 import com.spyrdonapps.weightreductor.model.repository.ProductRepository
 import com.spyrdonapps.weightreductor.model.validator.MealValidator
-import com.spyrdonapps.weightreductor.util.utils.orZero
+import com.spyrdonapps.weightreductor.util.extensions.mergeSameProductsWeights
+import com.spyrdonapps.weightreductor.util.extensions.removeEmptyProducts
 import org.springframework.stereotype.Controller
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.WebDataBinder
@@ -63,27 +64,5 @@ class MealController(
             mealRepository.save(meal)
             "redirect:/meals/"
         }
-    }
-
-    private fun Meal.removeEmptyProducts() {
-        val listCopy = ArrayList(productsWithWeights)
-        listCopy.forEach {
-            if (it.product == null && it.weight == null) {
-                productsWithWeights.remove(it)
-            }
-        }
-    }
-
-    private fun Meal.mergeSameProductsWeights() {
-        val groupedProducts = productsWithWeights.groupBy { it.product?.name.orEmpty() }
-        val mergedProducts = mutableListOf<ProductWithWeight>()
-
-        groupedProducts.forEach { (_, productsWithSameName) ->
-            mergedProducts.add(ProductWithWeight().apply {
-                this.product = productsWithSameName.first().product
-                this.weight = productsWithSameName.map { it.weight.orZero() }.sum()
-            })
-        }
-        productsWithWeights = mergedProducts
     }
 }
