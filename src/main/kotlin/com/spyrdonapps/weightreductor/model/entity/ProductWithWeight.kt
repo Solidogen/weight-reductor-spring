@@ -1,5 +1,6 @@
 package com.spyrdonapps.weightreductor.model.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.spyrdonapps.weightreductor.util.utils.CalorieUtils
 import com.spyrdonapps.weightreductor.util.utils.orZero
 import javax.persistence.Column
@@ -19,6 +20,7 @@ class ProductWithWeight : BaseEntity() {
 
     @ManyToOne
     @JoinColumn(name = "meal_id")
+    @JsonIgnore
     var meal: Meal? = null
 
     @Column(name = "weight")
