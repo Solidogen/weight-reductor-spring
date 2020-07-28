@@ -2,7 +2,7 @@ package com.spyrdonapps.weightreductor.controller.web
 
 import com.spyrdonapps.weightreductor.model.entity.Weighing
 import com.spyrdonapps.weightreductor.model.repository.WeighingRepository
-import com.spyrdonapps.weightreductor.model.validator.WeightingValidator
+import com.spyrdonapps.weightreductor.model.validator.AddWeighingRequestValidator
 import org.springframework.stereotype.Controller
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.WebDataBinder
@@ -22,7 +22,7 @@ class WeighingController(private val weighingRepository: WeighingRepository) {
 
     @InitBinder("weighing")
     fun initProductBinder(dataBinder: WebDataBinder) {
-        dataBinder.validator = WeightingValidator()
+        dataBinder.validator = AddWeighingRequestValidator()
     }
 
     @GetMapping("/weighings")

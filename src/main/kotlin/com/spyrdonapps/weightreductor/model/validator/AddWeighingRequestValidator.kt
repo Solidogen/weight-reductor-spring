@@ -1,16 +1,16 @@
 package com.spyrdonapps.weightreductor.model.validator
 
-import com.spyrdonapps.weightreductor.model.entity.Weighing
+import com.spyrdonapps.weightreductor.model.request.AddWeighingRequest
 import com.spyrdonapps.weightreductor.util.extensions.rejectIfLessThan
 import com.spyrdonapps.weightreductor.util.extensions.rejectIfMoreThan
 import com.spyrdonapps.weightreductor.util.extensions.rejectIfNull
 import org.springframework.validation.Errors
 
-class WeightingValidator : BaseValidator<Weighing>() {
+class AddWeighingRequestValidator : BaseValidator<AddWeighingRequest>() {
 
-    override val targetType = Weighing::class.java
+    override val targetType = AddWeighingRequest::class.java
 
-    override fun validate(errorList: Errors, target: Weighing) {
+    override fun validate(errorList: Errors, target: AddWeighingRequest) {
         with(target) {
             errorList.rejectIfNull(weight, "weight")
             errorList.rejectIfLessThan(weight, "weight", 0)
