@@ -3,6 +3,7 @@ package com.spyrdonapps.weightreductor.controller.api
 import com.spyrdonapps.weightreductor.model.entity.Weighing
 import com.spyrdonapps.weightreductor.model.repository.WeighingRepository
 import com.spyrdonapps.weightreductor.model.request.AddWeighingRequest
+import com.spyrdonapps.weightreductor.model.request.DeleteWeighingRequest
 import com.spyrdonapps.weightreductor.model.validator.AddWeighingRequestValidator
 import com.spyrdonapps.weightreductor.util.extensions.combinedMultilineError
 import com.spyrdonapps.weightreductor.util.utils.localhostUrl
@@ -50,5 +51,13 @@ class WeighingApi(private val weighingRepository: WeighingRepository) {
                 }
                 weighingRepository.save(newWeighing)
             }
+        }
+
+    @PostMapping("/weighings/delete")
+    fun deleteWeighing(@RequestBody deleteWeighingRequest: DeleteWeighingRequest, result: BindingResult): Any? =
+        if (result.hasErrors()) {
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result.allErrors.combinedMultilineError)
+        } else {
+            weighingRepository.deleteWeighingByDate(date = deleteWeighingRequest.date)
         }
 }
