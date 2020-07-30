@@ -42,7 +42,6 @@ class ProductApi(private val productRepository: ProductRepository) {
         productRepository.findProductById(productId)
             ?: ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product with ID $productId does not exist")
 
-
     @PostMapping("/products/add")
     fun addProduct(@Valid product: Product, result: BindingResult): Any =
         if (result.hasErrors()) {

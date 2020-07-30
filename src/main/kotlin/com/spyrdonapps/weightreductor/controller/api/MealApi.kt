@@ -2,7 +2,6 @@ package com.spyrdonapps.weightreductor.controller.api
 
 import com.spyrdonapps.weightreductor.model.entity.Meal
 import com.spyrdonapps.weightreductor.model.repository.MealRepository
-import com.spyrdonapps.weightreductor.model.repository.ProductRepository
 import com.spyrdonapps.weightreductor.model.validator.MealValidator
 import com.spyrdonapps.weightreductor.util.extensions.combinedMultilineError
 import com.spyrdonapps.weightreductor.util.extensions.mergeSameProductsWeights
@@ -26,14 +25,6 @@ import javax.validation.Valid
 @RestController
 class MealApi(private val mealRepository: MealRepository) {
 
-    /*
-    * todo
-    *  not sure if binders are good here.
-    *  I will get request, not a valid object
-    *  probably to replace, also current validators are not good with REST API
-    *  As well in Product/Weighing apis
-    * */
-    
     @InitBinder
     fun setAllowedFields(dataBinder: WebDataBinder) {
         dataBinder.setDisallowedFields("id")
