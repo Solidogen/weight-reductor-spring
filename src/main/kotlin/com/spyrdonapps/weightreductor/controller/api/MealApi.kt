@@ -36,7 +36,7 @@ class MealApi(private val mealRepository: MealRepository) {
     }
 
     @GetMapping("/meals")
-    fun getAllMeals(): MutableIterable<Meal> = mealRepository.findAll()
+    fun getAllMeals(): Iterable<Meal> = mealRepository.findAll()
 
     @PostMapping("/meals/add")
     fun addMeal(@Valid meal: Meal, result: BindingResult): Any? =

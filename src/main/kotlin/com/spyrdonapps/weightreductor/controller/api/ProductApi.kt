@@ -35,7 +35,7 @@ class ProductApi(private val productRepository: ProductRepository) {
     }
 
     @GetMapping("/products")
-    fun getAllProducts() = productRepository.findAll().toList()
+    fun getAllProducts(): Iterable<Product> = productRepository.findAll()
 
     @GetMapping("/products/{id}")
     fun getProductById(@PathVariable("id") productId: Int) =
